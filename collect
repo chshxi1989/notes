@@ -3,3 +3,1620 @@ alias ls="ls --color"
 
 alias -p
 显示系统所有的alias命令设定
+
+1 mantis除了resolve状态，其他都是on going状态
+2 自己报的mantis bug，要记得close，最终的状态不是resolve
+3 mantis必解题要在mantis里加note，3:00，8:00
+  特殊情况今天无法解决的，要发邮件给howard
+4 请假要提前把whs写好。一周可以写一条。
+
+20529090209
+
+magee huang(黄书全)
+
+F5: http://vpn.mstarsemi.com/
+
+公版：mstaramber3
+linux修改个人配置文件：~/.bashrc： export PATH=$PATH:/home/selic/dir/。如果给PATH错误赋值，可以在命令行中
+输入：PATH=/usr/bin来更正。
+shell 中访问变量$path or ${path},$(path)代表执行path命令。makefile中用$(path)访问变量
+029B----amber3(A3)  双核
+038B----eagle(J3)
+028B----eagleg1		单核
+\\172.21.19.234\fae1\FAE1_SW\Code_Release\Eagle_DVB\Code\6A608_TVOS-01.09.61.a02
+P4密码
+AEGIS：dhMEuRuJ
+THEALE：hsiOVcGM
+MILLER: tvsHDrDG
+wifi: 785vv587
+ymy: http://ymy/login.do?
+openssl polarssl
+6401: \\szbcsvru6401\home
+autobuild: \\172.21.80.230\autobuild\AUTOBUILD_IMAGES\I\G_CN_NIKE2_MI__MI_Madison_064B_linux
+
+186 SCA
+    因為header檔是不同版本SCA產出的
+    所以load不起來
+    看一下哪一個版本是適合mmap.ini里的header檔
+    mmap.ini里有定义SCA的版本：
+    #define SCA_TOOL_VERSION            "SN SCA V1.1.10 "
+
+185 Semaphore 信号量
+184
+    FILE结构体在文件stdio.h里定义，stdio.h ==> libio.h。真正在libio.h里define，
+    fileno记录的是file对应的描述符fd。
+    struct _IO_FILE {
+      int _flags;		/* High-order word is _IO_MAGIC; rest is flags. */
+    #define _IO_file_flags _flags
+
+      /* The following pointers correspond to the C++ streambuf protocol. */
+      /* Note:  Tk uses the _IO_read_ptr and _IO_read_end fields directly. */
+      char* _IO_read_ptr;	/* Current read pointer */
+      char* _IO_read_end;	/* End of get area. */
+      char* _IO_read_base;	/* Start of putback+get area. */
+      char* _IO_write_base;	/* Start of put area. */
+      char* _IO_write_ptr;	/* Current put pointer. */
+      char* _IO_write_end;	/* End of put area. */
+      char* _IO_buf_base;	/* Start of reserve area. */
+      char* _IO_buf_end;	/* End of reserve area. */
+      /* The following fields are used to support backing up and undo. */
+      char *_IO_save_base; /* Pointer to start of non-current get area. */
+      char *_IO_backup_base;  /* Pointer to first valid character of backup area */
+      char *_IO_save_end; /* Pointer to end of non-current get area. */
+
+      struct _IO_marker *_markers;
+
+      struct _IO_FILE *_chain;
+
+      int _fileno;
+    #if 0
+      int _blksize;
+    #else
+      int _flags2;
+    #endif
+      _IO_off_t _old_offset; /* This used to be _offset but it's too small.  */
+
+    #define __HAVE_COLUMN /* temporary */
+      /* 1+column number of pbase(); 0 is unknown. */
+      unsigned short _cur_column;
+      signed char _vtable_offset;
+      char _shortbuf[1];
+
+      /*  char* _save_gptr;  char* _save_egptr; */
+
+      _IO_lock_t *_lock;
+    #ifdef _IO_USE_OLD_IO_FILE
+    };
+
+183
+    find . -iname mssecureboot.c
+    不区分大小写，查找文件mssecureboot.c
+    selic.cheng@tc-002:~/PERFORCE/DAILEO/MBoot$ find . -iname mssecureboot.c
+    ./MstarApp/src/secure/MsSecureBoot.c
+182 4k2k : 3840*2160
+181 
+    printf("0x%p", pbuffer) ==> %p打印指针的值
+    printf("%zx", sizeof(int)) ==> 打印size_t的类型
+180
+    ./SeparateBin.exe MstarUpgrade.bin filetest 0x12f3f000 0xf0ef3
+                      source-file       dst-file  offset     len
+179 bootlogo 0 0 1 1 boot_recovery.jpg
+178 显示目录的大小：
+        selic.cheng@tc-002:~/lollipop-mstar-master/out/target/product/pitaya64/recovery/root$ du -hs
+                             11M     .
+	recovery rootfs大小为11M。
+177 notepad++ 设置书签，可以的在文本内随意查看其他内容。当想回到书签标记处，按F2键，就可以返回到书签标记处
+176 进工厂菜单： source菜单里按2580
+175 
+    URSA在panel的tcon里面。
+    napoli出来的是FHD的信号，如果TCON URSA默认吃FDH的信号，panel可以正常显示。
+	如果TCON URSA默认吃4k2k的信号，这时显示就有问题了，无法点亮。需要将TCON URSA切到FHD的状态（mboot里给板子发FHD的cmd）。这样才可以点亮panel。
+	mboot里需要加code，告诉URSA，板子出来的是FHD的信号，避免那些默认吃4k2k的板子无法点亮。
+	
+	mocano出来的是4k2k@60的信号，如果TCON URSA默认吃4k2k@60的信号，panel可以正常显示。
+	如果TCON URSA默认吃FHD的信号，这时显示就有问题了，无法点亮。需要将TCON URSA切到4k2k@60的状态（mboot里给板子发4k2k@60的cmd）。这样才可以点亮panel。
+	mboot里需要加code，告诉URSA，板子出来的是4k2k@60的信号。避免那些默认吃FHD信号的板子无法点亮。
+	
+174 panel Panel_VCC_ON和Panel_Backlight_VCC_ON
+          屏VCC和屏背光
+    BD_MST068D_10AHP_MONACO.h:
+    #define BALL_AG5_IS_GPIO						GPIO_OUT_LOW	//Panel power switch (Low: Off / High: On)
+    #define BALL_AG6_IS_GPIO						GPIO_OUT_LOW	//Backlight enable control (Low: Disable / High: Enable)
+    #define Panel_VCC_ON()                          mdrv_gpio_set_high(BALL_AG5)
+    #define Panel_VCC_OFF()                         mdrv_gpio_set_low(BALL_AG5)
+    #define Panel_Backlight_VCC_ON()                mdrv_gpio_set_high(BALL_AG6)
+    #define Panel_Backlight_VCC_OFF()               mdrv_gpio_set_low(BALL_AG6)
+	MApi_PNL_SetBackLight()
+	cmd_bootm.c 里点背光： MsDrv_PNL_BackLigth_On();
+	panel_post_init()
+	do_backLigth_on()
+	
+173 周末做压力测试
+
+172 
+    ./str2hex.exe test.txt test.bin
+	test.txt内容：11111111111111111111111111111111
+	生成test.bin文件，转换成十六进制文件
+171
+    4.3: busybox mount -o remount rw tvconfig
+    4,4: mount -o remount,rw /tvconfig
+170 
+    recovery里面
+    busybox wget通过ftp或HTTP获取服务器上数据
+169 du
+    mstarcore/cmd/cmd_mssystem.c
+	U_BOOT_CMD(
+		du,1,        1,	do_disable_uart,
+		"du  - Disable UART\n",
+		"command: du\n"
+	);
+	关掉uart
+168 execl换行，Alt+Enter
+167
+    source env.sh ==> 不fork子进程来执行env.sh，env.sh里面设置的环境变量会在当前shell中起作用
+	env.sh里有 #!/bin/bash ==》 fork子进程来执行env.sh，如果用source来执行就不同，但是./env.sh执行，环境变量还是没有在当前shell中起作用
+166 com_android_server_power_PowerManagerService.cpp，待机code
+     jb4.3/frameworks/base/services/jni/com_android_server_power_PowerManagerService.cpp
+	    static void nativeShutdown(JNIEnv *env, jclass clazz) {
+		// MStar Android Patch Begin
+		// normal shutdown flow
+		   static sp<TvManager> pTvManager = NULL;
+
+			pTvManager = TvManager::connect();
+
+			if(pTvManager == NULL)
+			{
+				printf("Fail to connect to sample service.");
+				return ;
+			}
+
+			TvManager::enterSleepMode(true,false);
+			//android_reboot(ANDROID_RB_POWEROFF, 0, 0);
+		// MStar Android Patch End
+		}
+		调到SN里的enterSleepMode函数
+165 DHCP ：Dynamic Host Configuration Protocol，动态主机配置协议，即动态分配IP
+    DNS: Domain Name System , 域名系统,，是因特网的一项核心服务，它作为可以将域名和IP地址相互映射的一个分布式数据库，
+	     能够使人更方便的访问互联网，而不用去记住能够被机器直接读取的IP（中文全称：网络协议）地址数串
+164 tftp不能烧写code时，需要把防火墙关掉。
+163 mboot里的timer中断
+    mboot里如果需要实现led闪烁的效果，需要用到timer中断，code: MStarCustomer/src/CusLED.c
+	用命令led来使用，timer中断的ISR： void TimerISR(MS_U32 u32Tick,MS_U32 u32TimerID)，会调函数do_Led_Flicker_Control()。
+	void do_Led_Flicker_Control(void)
+	{
+		static U8 u8LedStatus = 0;
+		if(u8LedStatus != 0)
+		{ 
+			LED_RED_ON();
+		}
+		else
+		{
+			LED_RED_OFF();
+		}
+		u8LedStatus = ~u8LedStatus;
+	}
+	LED_RED_ON即打开led灯，LED_RED_OFF即关闭led灯。
+	如果需要实现usb升级的时候，led闪烁，可以这样：
+	步骤： led time 100 ==> 升级前执行这个，打开timer中断，每100ms中断一次。
+	       led stop ==> 升级后执行这个，关掉timer中断。
+    打开timer中断，会调到utopia mxlib/msos/nos/MsOS_nos.c里的函数：MsOS_CreateTimer，里面又会调到函数Timer_IRQ_Register。
+	Timer_IRQ_Register的实现不在utopia里，而是在mboot里面，MstarCore/bsp/lib/libprana_nike.a。
+	//THEALE/GreenLion/platform/prana2/编译生成libprana_nike.a
+	
+162 linux下如何把一个静态库解开：
+     ar -x libprana_nike.a
+	把libprana_nike.a解开为.o文件
+160 tail -c 65536 file.bin > file
+    把file.bin最后面64KB的数据写到file文件中。
+159 在SN中关闭WDT，
+     在PM待机的时候，如果出现异常，系统会由WDT重启，所以调试PM的时候，可以把WDT关掉。调用函数：DisableWatchDog()关掉WDT。
+	   Mstarsdk/src/system/mapi_system.cpp
+158 替换supernova的hashkey:
+    projects/customerinfo/inc/Customer_Info.h
+157 
+     在sn里敲00112233可以把cpu停掉，关掉串口后用tv tool读寄存器。
+	 读完后再敲00112233就可以重新跑了
+156
+中断服务程序（Interrupt Service Routine）
+155
+     跳转到BootRom_InitPeripheral执行
+	 bl          BootRom_InitPeripheral
+	 
+	 BootRom_InitPeripheral后面有code：
+	 bx lr
+	 这样执行完BootRom_InitPeripheral后，会返回到跳转之前的地方接着执行。
+154 spi写保护
+    倒三角，3： wp管脚。
+	7：HOLD管脚，高电平，
+	把3和7连接起来，拉高WP管脚，即可清除写保护
+153 
+    RIU: register interface unit，寄存器接口单元。描述寄存器的地址
+152 
+    mboot里测试从开机到某个时间点的时间：
+	int PIUTimer(void)
+	{
+		unsigned int PiuTick = *(volatile unsigned int *)(0x1f006090);
+		PiuTick |= (*(volatile unsigned int *)(0x1f006094)) << 16;
+		unsigned int PiuTime = PiuTick / 12000;
+		return PiuTime;
+	}
+	调用PIUTimer()即可，PiuTime就是需要的时间，单位是ms
+    这里是利用PIU来量时间。在boot.S里会初始化PIU：
+	bl  BootRom_InitTimer
+151
+    
+150
+    RREG        r0, (MS_BUS_RIU_ADDR + (0x000E12 << 1))     @//Enable UART Rx via PAD_DDCA for dig_mux
+    orr         r0, r0, #0x0800  //或运算
+	把0x0E13的bit3设为1
+	RREG        r0, (MS_BUS_RIU_ADDR + (0x000E12 << 1))     @//Enable UART Rx via PAD_DDCA for dig_mux
+    bic         r0, r0, #0x0800  //位清零运算
+	把0x0E13的bit3清0.
+149
+	U32 u32FirstTime = 0;
+	u32FirstTime = MsOS_GetSystemTime();
+	U32 u32LastTime = MsOS_Timer_DiffTimeFromNow(u32FirstTime);
+	UBOOT_TRACE("====bootlogo execute time :%d========\n",u32LastTime);
+
+148
+    sboot/src/nike/drvPadConf.c:
+	 #define _MEMMAP_nonPM_              _RVM1(0x0000, 0x10, 0xFF)
+     #define _MEMMAP_PM_                 _RVM1(0x0000, 0x00, 0xFF)
+    _RVM1 ==> sboot/drvRIU.h ==> sboot/drvRIU.S
+147
+	pitch与width
+	以一张640*480的每个像素点为24位(3字节)颜色的图为例：
+	height = 480
+	width：表示图片的逻辑宽度，在这里就是640，这个值与色深无关及其他都无关，你所见的宽度就是它的值，一行的pixel数量
+	pitch：表示图片中一行数据所占的字节数，或者说是跨度，在这里应该是640*3，因为图片宽度是640，每个像素是3个字节数据，那么一行数据就是640*3
+    pitch = width * bits_per_pixel/8 = 640*24/8 = 1920
+	图片的大小 size = pitch * height = 1920 * 480 = 0xE1000 = 900KB
+	如果是jpg格式，看图片属性得到的大小大致为90KB左右，因为jpg格式有压缩，压缩率是10:1左右
+	如果是bitmap格式，看图片属性得到的大小和900KB一致。为900KB
+	
+146 在main函数里面定义
+     #define READ_SIZE (5 * 1024 * 1024)
+     char buf[READ_SIZE];
+     编译之后运行会报segmentation fault
+145 DC上电：不断电，通过遥控器或reboot命令重启
+    AC上电：通过电源开关重启
+144 tar -cvzf ics.tar.gz ics/[^o]*
+143 logcat -s tvos ==》输出android里面tvos的打印
+    logcat -s fbdev ==> 看fbdev的打印
+142 tcl mboot .config.edison.android.046b_CUS19.rom.emmc.tee.security
+141 setting 里面recovery相关code RecoverySystem.java
+    path： frameworks/base/core/java/android/os
+140 notepad++设置书签
+     可以的在文本内随意查看其他内容。当想回到书签标记处，按F2键，就可以返回到书签标记处。
+139 recovery里面图片用的40，宋体，可以用美图秀秀做图
+138 15秒后开始恢复系统，取消恢复，请按EXIT键
+    15 seconds later,Start to recovery system,Press EXIT key to cancel
+137 GTV secureboot config
+    .config.edison.android.036b.rom.emmc.tee.security
+    
+136 retouch_binaries :对so库文件进行二进制优化。
+    undo_retouch_binaries ：不对so库文件进行二进制优化。NAND版本，应该调这个命令
+	这2个命令在ics中，jb里面已经删掉了
+	
+135 lzop command:
+     unlzo:
+     ./lzop -d -f -o systema.img system.imgaa.lzo
+     lzo:
+     ./lzop -f -o system.img.lzo systema.img
+     
+     #############
+     ../../tools/lzop -d -f -o systema.img system.imgaa.lzo
+     ../../tools/lzop -d -f -o systemb.img system.imgab.lzo
+     cat systemb.img>>systema.img
+     ../../tools/lzop -f -o system.img.lzo systema.img
+134 mstar sn.txt烧写SN的img
+133 mboot里的env
+    在uboot-2011.06/common/Makefile里可知道spi flash对应的env文件时env_sf.c
+	env_sf.c函数saveenv()里面：
+	int ret = write_flash(CONFIG_ENV_ADDR, (MS_U8*)env_ptr, CONFIG_ENV_SIZE);
+    int retBak = write_flash(CONFIG_ENV_ADDR_BAK, (MS_U8*)env_ptr, CONFIG_ENV_SIZE);
+	uboot-2011.06/include/configs/kaiser.h里工具module选择env在spi/nand/emmc
+	#if (ENABLE_MODULE_ENV_IN_NAND)
+ 	#define CONFIG_ENV_IS_IN_NAND
+	#elif (ENABLE_MODULE_ENV_IN_SERIAL)
+	#define CONFIG_ENV_IS_IN_SPI_FLASH
+	#elif (ENABLE_MODULE_ENV_IN_MMC)
+	#define CONFIG_ENV_IS_IN_MMC
+	#else
+	#define CONFIG_ENV_IS_NOWHERE
+	#endif
+	如果是spi:
+	#define CONFIG_ENV_ADDR		    cfg_env_offset
+    #define CONFIG_ENV_ADDR_BAK        (CONFIG_ENV_ADDR + CONFIG_ENV_SIZE)
+	cfg_env_offset是一个全局变量，在uboot-2011.06/common/env_common.c定义：
+	unsigned int cfg_env_offset = 0;
+	初始化是在env_sf.c spi_init()函数里：
+	#if(CONFIG_FORCE_TO_ASSIGN_ENV_OFFSET==1)
+    cfg_env_offset = CONFIG_ENV_VAR_OFFSET;
+    #else
+    cfg_env_offset = pSPIFlashInfo->u32TotalSize - (CONFIG_ENV_SIZE << 1);
+    #endif
+132 shift + delete 可以删除make menuconfig 文本框里的数据
+131 mboot里面如何读取panel的路径：
+      config/sys.ini里的gModelName-->/config/model/Customer_1.ini
+	  /config/model/Customer_1.ini里的m_pPanelName --> "/config/panel/FullHD_CMO216_H1L01.ini";
+	  确定panel数据的文件路径
+130 setenv panel_path 可删除环境变量panel_path。再saveenv即可
+    
+129
+    K3 lzo load addr 0x5f000000没有被cache到，是uncache的地址，这样做unzlo的时候很慢，要换成cache地址
+	现在改为0x3f000000
+	在utopia/mxlib/hal/kaiser/halCHIP.h里面定义MIU地址：
+    edison: 
+	#define HAL_MIU1_BUS_BASE           0xA0000000 // MIU1 Low 256MB
+    #define HAL_MIU0_BUS_BASE           0x40000000 // MIU0 Low 256MB
+	k3:
+	#define HAL_MIU1_BUS_BASE           0xA0000000 // MIU1 Low 256MB
+    #define HAL_MIU0_BUS_BASE           0x20000000 // MIU0 Low 256MB
+	在utopia/mxlib/msos/nos/MsOS_nos.c函数MsOS_VA2PA(MS_U32 addr)里面可以看到cache和没有uncache对应的VA。
+	k3里面0x5000:0000~0x6000:0000这个是uncache的
+	edison里面0x5000:0000~0x6000:0000这个是cache的
+128 IR按键：
+     Exit -->recovery
+	 MENU -->  usb/OTA
+	 volume+ ---> usb upgrade
+127
+    mboot 520763 ====> authenticate cleanboot.bin
+    mboot_503263  k3 secureboot
+    secureboot_OSD/mboot_spi_460140_temp1     secureboot error OSD
+	mboot_517667       AESDMA  SHA
+126 SecureCRT中
+    shift+fn+insert 粘贴
+    crtl+fn+insert 复制
+125
+         kernel/include/asm-generic   定义EACCESS
+124
+		//DAILEO/MBoot_Branch/MBoot_Edison_TVOS/   CL#487480
+		
+		//DAILEO/SN_Branch/SN__-03.13.Rel/   CL#491358  ;
+		release MSDK from //THEALE/TV_Modules_Branch/MSDK__-01.06/MStarSDK/ #CL: 490544
+		
+		//AEGIS/android/jb_4.2/   CL#490896
+		//THEALE/RedLion_customers/3.1.10_Edison_TVOS/...@487322
+		
+		TVOS-01.15.24
+		[Module Version]
+		JB_-01.08.01
+		SN__-03.13.29.a1
+		MBOT-02.02.487480
+
+		[SW CL]
+		AN: CL#490896
+		SN: CL#491358
+		MBOOT: CL#487480
+123 head -n 30 boot1.inc ,显示文件boot1.inc的前30行
+    tail -n 30 boot1.inc ,显示文件boot1.inc的最后30行
+    head -c 7340032 emmc.bin > test.bin 把emmc.bin前7M的数据写到test.bin文件中
+    
+122 TC 主菜单 -- 配置 -- 配置面板中左边选中“显示” 
+    total commander 中显示隐藏文件夹
+121 定义函数指针，函数名就是一个指针，指向该函数的代码在内存中的首地址。
+	简单的函数指针的用法
+	//形式1：返回类型（*函数名）（参数表）
+	char（*pFun)(int);
+	//typedef char(*pFun)(int)   //跟上一行功能等同
+
+	/*typedef的功能是定义新的类型。第一句就是定义了一种PTRFUN的类型，并定义这种类型为指向某种函数的指针，
+	这种函数以一个int为参数并返回char类型。*/
+	char glFun(int a){return;}
+	void main()
+	{
+	   pFun =&glFun;
+	   (*pFun)(2);
+	}
+	第一行定义了一个指针变量pFun.它是一个指向某种函数的指针，这种函数参数是一个int类型，返回值是char类型。只有第一句我们还无法
+	使用这个指针，因为我们还未对它进行赋值。
+	第二行定义了一个函数glFun().该函数正好是一个以int为参数返回char的函数。我们要从指针的层次上理解函数-函数的函数
+	名实际上就是一个指针，函数名指向该函数的代码在内存中的首地址。
+120
+  warning：ISO C90 forbids mixed declarations and code
+  变量定义之前任何一条非变量定义的语句（重视：语句是会带分号的）都会引起这个警告！ 将非变量的定义移到变量定义之后
+  即可，也就是变量的声明 必须在执行语句之前。
+119 
+  C语言宏：
+      __TIME__  %s  时间
+      __LIEN__  %d  行数
+	  __FUNCTION__ %s 函数
+	  __FILE__  %s  文件
+118
+    Chip_Flush_Memory();
+	flush_cache(u32addr,u32len);
+117  tftp 升级：
+       mstar scripts/[[recovery
+	          |
+	   mstarapp/src/MsUpgrade.c
+	     do_mstar(...) <---------> mstar command
+		      |
+       u-boot-2011.06/common
+	       do_tftpb(...)   <----------> tftpboot
+		      |
+	   netboot_common(...)
+116 jump_to_console()  MstarApp/src/MsUtility.c
+115 大端和小端
+    一个字有4个字节，对大端而言，高有效位在低地址处，对小端而言，高有效位在高地址处
+	数据：0x12345678
+	大端： 0x12 0x34 0x56 0x78
+	小端： 0x78 0x56 0x34 0x12
+	一般用小端模式。但在AESDMA中，有时要把数据转为大端。RSA2048 加密的秘钥Ｄ域，就需要进行大小端转换
+114 mboot在spi flash中，spi flash最后128k用来保存环境变量，前面的空间保存MBoot
+    -----------------------
+	|                 |   |
+	|       MBoot     |env|
+	|                 |   |
+	------------------------
+	                   128K
+    烧写mboot时，如果选择File Area，则仅会擦除MBoot区域并写入MBoot，不会擦除整个SPI flash，所以，烧写前后，环境变量
+	没有变化
+	如果选择All Chip，则会把spi flash和emmc flash全部erase后再写入mboot到spi flash，烧写后，环境变量和emmc flash中
+	内容全部被清空了
+113 #if 后面可以使用一个复杂的表达式，例如
+	#if defined(MACRO_A) && defined(MACRO_B)
+	而#ifdef 后面只能接宏，无法接表达式，没有#if defined()灵活
+112 plaintext  明文
+    ciphertext 密文
+111
+	高手请看：warning: function declaration isn't a prototype
+	int function()
+	改称
+	int function(void)
+110
+	const只修饰其后的变量，至于const放在类型前还是类型后并没有区别。如：const int a和int const a都是修饰a为const。
+	*不是一种类型，如果*pType之前是某类型，那么pType是指向该类型的指针
+	一个简单的判断方法：指针运算符*，是从右到左，那么如：char const * pContent，可以理解为char const (* pContent)，
+	即* pContent为const，而pContent则是可变的。
+	char const *pst;  *pst为const ,pst指向的内存单元的值不能改变
+	char* const pst ; pst为const,pst指向一个固定的单元
+	如果const位于*的左侧，则const就是用来修饰指针所指向的变量，即指针指向为常量；
+    如果const位于*的右侧，const就是修饰指针本身，即指针本身是常量。
+109
+    C语言中 宏 #define ALIGN(size, align) ((size + align - 1) & (~(align - 1)))
+	这个宏的功能是整数提升，即将size提升为align定义的整数的倍数。例如：align=8,size=7，则这条宏运行的结果是8；
+	align=8,size=13，则这条宏运行的结果是16。
+108 硬解：
+     AESDMA:与openssl加密的密码相反，解密出的才和用openssl解密出的一致
+	 RSA2048 ：解密出的结果和期望的结果相反，数据被置换了，需要颠倒解密的结果，才和需要的一致
+	 SHA256： 和RSA2048一样，需要颠倒结果
+	    45000100: 33 5e d1 fa cc 0f 92 94 06 fd 84 b8 46 03 9f ea    3^..........F...
+		45000110: f3 ff 40 6d 94 76 bf 26 db d6 22 9d bb e5 e7 74    ..@m.v.&.."....t
+	应该颠倒：
+		45000100: 74 e7 bb e5 9d 22 d6 db 26 bf 76 94 6d 40 ff f3     3^..........F...
+		45000110: ea 9f 03 46 b8 84 fd 05 94 92 0f cc fa d1 5e 33    ..@m.v.&.."....t
+107 mmc read.p.continue  0x45000000  boot     0x1      0x100 
+                          内存地址   分区   偏移块数  长度大小 
+    A3上mmc的flash ，块大小blocksize=512字节
+	偏移量为偏移的块数，而非偏移的字节数
+	mmc以块为单位读取，即一次会读取blocksize字节的数据。
+	rsize=(size>BLOCK_SIZE)?BLOCK_SIZE:size;
+    ret=ImageRead(volume,addr, BLOCK_SIZE*(i*FRAGMENT_NUM+number),rsize);
+	下面两个命令读数据：
+	mmc read.p 0x45000000 boot 0x400   ---> md.b 0x45000200 0x30
+	mmc read.p.continue 0x45000000 boot 1 0x100  --->md.b 0x45000000 0x30 
+    两种方法读出的数据，在内存0x45000200 和内存0x45000000的内容一致
+106 只烧写mboot区域.Erase Device---> File Area;,烧整个区：All Chip
+105
+matt.sung(Matt Sung (宋俊緯)) 15:20:40
+Sample code如下:(我在u-boot上測過OK)
+    printf("enter Secure_init\n");
+    DrvAESDMA_RSASig *ptr_Sign = (DrvAESDMA_RSASig *)(0x40202700);
+    DrvAESDMA_RSAKey *ptr_Key = (DrvAESDMA_RSAKey *)(0x40200000);
+    DrvAESDMA_RSAOut *ptr_Out = (DrvAESDMA_RSAOut *)(0x40300000);
+    MDrv_RSA_Calculate(ptr_Sign, ptr_Key, 1);
+    while(MDrv_RSA_IsFinished()==1);
+    MDrv_RSA_Output(1, ptr_Out);
+    printf("RSA done...\n");
+matt.sung(Matt Sung (宋俊緯)) 15:21:19
+Sign : 第一個bytes是MSB
+N: 第一個bytes是MSB
+E: 第一個bytes是LSB
+105 GOP 问题
+    bootable/recovery/
+	device/mstar/mstaramber3/recovery/config
+	hardware/mstar/libfbdev
+104 MSB：Most Significant Bit 最高有效位，有硬件读取的方式决定
+    LSB：list Significant bits  最低有效位
+	在二进制数中，MSB是最高加权位。与十进制数字中最左边的一位类似。通常，MSB位于二进制数的最左侧，
+	LSB位于二进制数的最右侧。
+103 AESDMA中，AES ECB  encrypt/decrypt时，传入的长度为u32len，drv内部实际处理的长度只有(u32len/16)*16,比如，u32len
+   =17, 实际处理的长度为16，最后一个字节不会处理，导致有只有前面(u32len/16)*16的自己被encrypt/decrypt，后面的数据没
+   有被处理。所以加解密的时候，传入的长度u32len需要为填充为16的整数倍，即align 16
+   传入MDrv_AESDMA_SetFileInOut的地址，u32FileinAddr和u32FileOutSAddr也需要和16对齐
+   这些都在secure/crypto_aes.c的CommonAES128函数中处理了
+   数据结构data，大小为15个自己，调用CommonAES128处理对data的加密，实际加密了u32Len+16-u32Len%16，即16个字节。解密
+   后数据为16个字节。
+   如果将解密后的数据直接写会到原来的data地址处，则会操作data开始的16个字节。
+102 11.30 算法调通，在A3平台上 ，Mboot中也需要RSA加密
+    12.5  移到edison平台上
+	12.12 cleanboot联调
+101 RSA加密公钥：N ,E  ;私钥：N，D
+    (N,e)是公钥，(N,d)是私钥
+	但在openssl中私钥加密时，要将N、E、D都传进去
+100 AESDMA 路径
+    utopia/mxlib/drv/aesdma
+99 编译utopia  : 
+     1 cd utopia/project
+	 2 cd a3_nos_arm_mboot  选择要编译的平台
+	 3 ./a3_nos_arm_mboot_bsp.sh  
+	 在utopia/project/a3_nos_arm_mboot/bsp/lib中产生需要的库：libdrvAESDMA.a
+98 二进制文件没有文件结束符，文本文件才有
+97 hexdump misc 以16进制的形式查看文件misc：
+		selic@tc-003:~/demo/stb-iptv-algorithm 10.15$ hexdump misc
+		0000000 d6d6 005f f0e2 0038                    
+		0000008
+	总共8个字节，里面内容依此为：d6,d6,5f,00,e2,f0,38,00.
+	可以看到是小端存储。高有效位在高地址处，低有效位在低地址处
+96 make 中的ifeq和符号(之间有空格：ifeq ($(BUILD_WITH_SECURE_UPGRADE),true)
+   而不能写成：ifeq($(BUILD_WITH_SECURE_UPGRADE),true)，报错
+95 int a=3;printf("0x%08x\n",d);以十六进制的形式输出数据d，长度为8位，不足8位，在前面加0;结果为：0x00000003
+94 修正recovery升级过程中拔掉U盘后再插入U盘无法升级的问题：PERFORCE\AEGIS\android\ics-mantis-0297407
+   主要修改文件recovery.c和roots.c，和updater/install.c，在recovery.c 中prompt_and_wait()函数中的：
+	case ITEM_APPLY_SDCARD，加入处理
+				case ITEM_APPLY_SDCARD:
+                //status = update_directory(SDCARD_ROOT, SDCARD_ROOT, &wipe_cache);
+				ensure_path_mounted(updatepath);
+				status = update_directory("/mnt", NULL, &wipe_cache);
+93 当升级ota时，如果在PackageExtractFileFn和PackageExtractDirFn函数执行过程中，将U盘拔掉会导致system升级失败
+   有些文件没有解压到system分区中。但由于这两个函数不是最好升级脚本中最后执行的函数：unmount("/system");
+   导致升级程序updater不会返回失败，结果就是，升级完成后，系统重启，正常系统无法运行。
+   解决方法是：PackageExtractFileFn和PackageExtractDirFn函数中如果解压失败，就直接exit(8)。
+   在文件/bootable/recovery/updater/install.c的函数PackageExtractFileFn和PackageExtractDirFn中添加：
+	   if(success==false) {
+			//exit 8 to recovery if minizip failed.
+			exit(8);
+	   }
+      使updater程序退出。recovery程序intall.c中会：
+	    int status;
+		waitpid(pid, &status, 0);
+		if (!WIFEXITED(status) || WEXITSTATUS(status) != 0) {
+			LOGE("Error in %s\n(Status %d)\n", path, WEXITSTATUS(status));
+			return INSTALL_ERROR;
+		}
+		检测到status=8
+	此时就可以返回错误的执行结果了。
+92  int status;
+    waitpid(pid, &status, 0);
+    if (!WIFEXITED(status) || WEXITSTATUS(status) != 0) {
+        LOGE("Error in %s\n(Status %d)\n", path, WEXITSTATUS(status));
+        return INSTALL_ERROR;
+    }
+	在父进程中获取进程pid的退出值，一般为子进程main函数return的值。判断，如果子进程return值不为0，就返回
+	INSTALL_ERROR。
+91 recovery升级过程中，想要改变update-binary的执行行为，需要重新编译ota升级包，而不是只烧一个recovery.img.
+    make otapackge。尽管updater程序源码是在目录/ics/bootlable/recovery/updater中，但recovery.img中没有
+	updater程序，updater程序在ota升级包中。secureupgrade移植时出现的问题
+90 fflush(FILE* fp),而非 fllush(FILE* fp)
+89 sizeof(char*) ,由于编译服务器为64位的，造成其值为8，而非4
+88 用man命令查找函数用： man 3 mktemp，查找到库函数mktemp的用法，而不是命令mktemp
+   Linux man命令是初学者必须要掌握的一个Linux重要命令，这个命令可以帮助在学习中遇到的各种不会使用的命令问题，
+	每个命令的不同的使用方法都可以在这里查找的到。现在介绍具体使用方法。
+	在Linux的shell下我经常要使用man命令来查看一些不熟悉的命令的使用方法。最经在shell下编程的时候，
+	发现一些c和c++中的库函数不清楚，我都跑去网上搜索了。一不小心，我发现，原来man还可以用来查询系统库文件中的一些
+	函数定义和使用方法。man就是manual的缩写，用来查看系统中自带的各种参考手册，但是手册页分为好几个部分，如下所示：
+	1 Executable programs or shell commands
+	2 System calls (functions provided by the kernel)
+	3 Library calls (functions within program libraries)
+	4 Special files (usually found in /dev)
+	5 File formats and conventions eg /etc/passwd
+	6 Games
+	7 Miscellaneous (including macro packages and conventions), e.g. man(7), groff(7)
+	8 System administration commands (usually only for root)
+	9 Kernel routines [Non standard]
+	在shell中输入 man+数字+命令/函数 即可以查到相关的命令和函数。若不加数字，那man命令默认从数字较小的手册中寻找相
+	关命令和函数。例如，本来是想寻找c标准库中的rand()函数，直接使用man rand得到的是一个rand命令的手册，直接用来产
+	生一个随机数，这个内容在手册section 1中。如果使用man 3 rand就可以得到自己想要的库函数中rand()的用法了。
+88 execlp("ls","ls","-al","/usr/bin"，NULL),第一个参数告诉execlp去寻找ls程序。第二个"ls"为需要执行程序的名字
+	即argv[0]:"ls",argv[1]:"-al",argv[2]:"/usr/bin",argv[3]:NULL ,标志参数完成
+87 linux下判断文件是否存在的函数： 
+		int access(const char *pathname, int mode);
+	pathname为文件名，mode为要检测的
+	文件权限。为F_OK,R_OK,W_OK,X_OK,F_OK tests for the existence of the file.  R_OK, W_OK, and X_OK test
+	whether the file exists and grants read, write, and execute permissions
+86 定位程序执行。printf("[%s: %d] reload env now ...\n",__func__,__LINE__)注意，两个_
+85 linux shell 脚本编写最开始需要#!/bin/bash，为脚本指明需要的解释器
+   那些具有 UNIX 味道的脚本(基于 4.2BSD)需要一个 4 字节的魔法数字，在#!后边需要一个空格#! /bin/sh。
+84 Linux执行文件有如下几种方式：   
+（1）./xxx.sh意思是执行当前目录的a.sh文件，与输入完整路径执行脚本效果是一样的。需要a.sh有可执行权限。
+（2）sh xxx.sh意思是用shell解释器来执行a.sh脚本，不要求文件有可执行权限。
+（3）. xxx.sh和source效果相同，作用都是使刚修改过的配置文件立即生效。
+	shell中使用source conf.sh，是直接运行conf.sh的命令，不创建子shell，source不是直接执行一个文件，
+	而是从一个文本文件里面读命令行，然后执行这些命令。我执行的时候使用了 .  XX.sh，这样相当于直接系统读取exit，然后
+	退出，正确的运行方式是 ./XX.sh 或者sh XX.sh 。sh是则创建子shell，子shell里面的变量父shell无法使用，对环境变量的
+	修改也不影响父shell。父shell中的局部变量，子shell也无法使用，只有父shell的环境变量，子shell能够使用.
+
+83 java -jar signapk.jar -w testkey.x509.pem testkey.pk8 update.zip update_signed.zip 
+     对应android中目录为：
+	java -jar out/host/linux-x86/framework/signapk.jar -w \
+	build/target/product/security/testkey.x509.pem build/target/product/security/testkey.pk8 \
+	update.zip update_signed.zip
+	命令打包签名文件update.zip，这里update.zip只要是zip包，都可以签名打包，没有具体要求。这个命令主要效果是
+	创建了和签名相关的文件。
+	生成文件update_signed.zip，在update_signed.zip中创建了文件夹：META-INF/，文件夹中内容如下。对于ota压缩包，没有
+	创建文件夹，因为ota压缩包里已经有了
+	    META-INF
+		|
+		|---CERT.RSA
+		|
+		|---CERT.SF
+		|
+		|---MANIFEST.MF
+		|
+		|----com
+		|	  |	  
+		|	  |-----android
+		|	  |   		|
+		|	  | 		|----otacert
+	这里要主要字符'-'不能写为中文的'-'，否则，执行程序时出现错误
+82  C++ 调用C中代码需要在C文件中加上
+		#ifdef __cplusplus
+		extern "C" {
+		#endif
+	和
+		#ifdef __cplusplus
+		}
+		#endif
+	先对C中调用C++代码作个简单回顾：
+	1、对于C++中非类的成员函数，可以简单的在函数声明前面加extern “C”，通常函数声明位于头文件中，
+	当然也可以将声明和函数定义一起放在cpp中，在没有声明的情况下，直接在定义前添加extern “C”也可
+	2、对于C++类的成员函数，则需要另外做一个cpp文件，将需要调用的函数进行包装。
+	以上两项的实例参看前面C中如何调用C++代码的文章。
+	要实现C++中调用C的代码，具体操作：
+	对于C中的函数代码，要么将C代码的头文件进行修改，在其被含入C++代码的文件中声明中加入extern “C”或者在C++代码中重新声明
+	一下C函数，重新声明时添加上extern “C”头。
+	通过以上的说明，我明白一点，那就是加extern “C”头一定是加在C++的代码文件中才能起作用的。
+ 
+	下面分析一下这个现象的实质原因：
+	C编译器编译函数时不带函数的类型信息，只包含函数符号名字，如C编译器把函数int a(float x)编译成类似_a这样的符号
+	，C连接器只要找到了调用函数的符号，就可以连接成功，它假设参数类型信息是正确的，这是C编译连接器的缺点。
+	而C++编译器为了实现函数重载，编译时会带上函数的类型信息，如他把上面的a函数可能编译成_a_float这样的符号为了
+	实现重载，注意它还是没有带返回值得信息，这也是为什么C++不支持采用函数返回值来区别函数重载的原因之一，
+	当然，函数的使用者对函数返回值的处理方式（如忽略）也是重要原因。
+	基于以上，C调用C++，首先需要用封装函数把对C++的类等的调用封装成C函数以便C调用，于是extern "C"的作用是：
+	让编译器知道这件事，然后以C语言的方式编译和连接封装函数（通常是把封装函数用C++编译器按C++方式编译，
+	用了extern "C" 后，编译器便依C的方式编译封装接口，当然接口函数里面的C++语法还是按C++方式编译；
+	对于C语言部分--调用者，还是按C语言编译；分别对C++接口部分和C部分编译后，再连接就可以实现C调用C++了）。
+	相反,C++调用C函数，extern "C" 的作用是：让C++连接器找调用函数的符号时采用C的方式，
+	即使用_a而不是_a_float来找调用函数。
+81  应该是edison中上层没有调用/dev/graphics/fb0，所以不能显示
+80  通过errno查看错误信息.strerror在头文件string.h中
+	you can get more information on the error from the errno variable, as in the following example:
+	#include <errno.h>
+	#include <string.h>
+	...
+	int ret = open("/dev/simulator", O_RDWR);
+
+	if (ret < 0) {
+	  printf("open() failed: %s", strerror(errno));
+	}
+
+79   现在编译内核要mstar目录，
+			selic@tc-003:~/PERFORCE/THEALE/RedLion$ ls
+			3.0.20  mstar
+	内核会链接mstar文件夹中的文件
+	jb env.sh 中删掉OTA_TV_IMAGE_SUFFIX变量，在build/envsetup.sh中进行自动的识别
+	makefile中，不需要对$(recovery_config)和 $(busybox_binary) 建立相关依赖性，因为有的厂商没有这两个。
+1.	将android的压缩包上传到linux中再解压，不能在windows 中解压后再传到linux。Windows解压会破坏android中一些文件
+2.	上传压缩包到linux，利用linux命令解压，最好不要在window下解压后上传文件
+3.	A3 stb编译升级包要将env.sh中038B改为029B
+4.	mount  -o remount  rw  /system  改变system分区的只读属性，执行后，变为可读可写
+5.	编译模块
+	Android中的一个应用程序可以单独编译，编译后需要重新生成system.img。
+	在Android目录下运行
+	$ . build/envsetup.sh  或者
+	$ source build/envsetup.sh ，然后就会多出几个可用的命令：
+		- croot:   Changes directory to the top of the tree.
+		- m:       Makes from the top of the tree.
+		- mm:      Builds all of the modules in the current directory.
+		- mmm:     Builds all of the modules in the supplied directories.
+		- cgrep:   Greps on all local C/C++ files.
+		- jgrep:   Greps on all local Java files.
+		- resgrep: Greps on all local res/*.xml files.
+		- godir:   Go to the directory containing a file.
+		- printconfig: 当前build的配置情况.
+	可以使用 --help查看用法。
+	如：在修改了某一个模块以后，可以使用 $ mmm <目录>  来重新编译所有在<目录>中的所有模块，
+	使用 $ mm  编译当前目录中的所有模块。
+	编完之后，即修改了Android系统以后，可以使用 $ make snod 重新生成system.img
+6.	通过命令行安装apk到手机
+		pm  install  UI-VVOIP.apk
+		adb install  a.apk
+7 注意空格，= 与字符之间存在空格
+		include $(CLEAR_VARS)
+		LOCAL_MODULE := UI_VVOIP
+		LOCAL_MODULE_TAGS := optional
+		LOCAL_MODULE_CLASS := APPS
+		LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
+		LOCAL_CERTIFICATE := platform
+		LOCAL_SRC_FILES := $(LOCAL_MODULE).apk
+		include $(BUILD_PREBUILT)
+		
+8 Android.mk文件
+9 	recovery.fstab <--------------> ics/devices/biaoqi/biaoqi6a801iptv/recovery.fstab
+	kernel <--------------> ics/devices/biaoqi/biaoqi6a801iptv
+	busybox <------->ics/prebuild/android-arm/busybox
+	
+10 reboot <----------->ics/system/core/toolbox/reboot.c
+                       system/core/libcutils/android_reboot.c
+11 #logcat -c  清空以前的log信息，Clears (flushes) the entire log and exits.
+   #logcat  显示log信息
+12 livecap 播放
+  (1) 在串口上
+       su
+       ps
+      找到对应的livecap的pid
+      root      703   1     19092  3132  ffffffff 00000000 S /system/bin/livecap  
+ 
+  (2) 然后kill掉livecap
+     kill -9 703
+ 
+  (3)然后重新启动livecap
+     /system/bin/livecap -noauth & 
+     表示不带认证，并后台进行运行的
+ 
+  (4)使用vlc进行测试
+		菜单操作
+       媒体-->打开网络
+       地址中输入"rtsp://172.23.66.200/liveplay.123?wigth=640&&high=480"
+       其中172.23.66.200 为板子的ip地址
+13
+	1 安装附件中的apk到STB板子上
+		可以拷贝该apk到U盘中，然后从串口进入到apk所在的U盘目录下，执行下面的命令即可完成安装
+		pm install UI-VVOIP.apk
+
+	2 设置STB板子的mac地址
+		由于voip需要已经注册的vip号码信息，因此需要更新STB板子的mac为已授权的mac
+		下面有两个已授权的mac，可以使用，两块板子设置的mac不能相同
+		set ethaddr 00：00：00：00：00：07 
+	    set ethaddr 00：00：00：00：00：06
+
+	3 需要在STB板子上接上摄像头设备
+
+	4 启动板子，进入我的应用，打开voip应用即可验证，需要两人配合
+
+14  adb配置
+	target:
+	su
+	adbd &		# 开启adbd的守护进程
+	netcfg 		# 看板子上的IP
+	adb root
+	kill <not root adb >
+	
+	host:
+	//adb devices 列出设备
+	adb connect <board_ip>
+	adb 
+	
+	adb -s emulator-5554 shell
+	adb disconnect 取消连接
+	ADB是一个 客户端-服务器端 程序, 其中客户端是你用来操作的电脑, 服务器端是android设备/emulator.
+	客户端对应的是adb ，服务器端对应的daemon是adbd。
+2012-7-25
+
+15  GTV 编译
+	目前GoogleTV已經可以跑在amber3上, 放在
+	//GoogleTV/images/mstaramber3/
+	但請先移除/system/app/IpRemote.apk  OverscanCalibrator.apk
+
+	How to build google tv ?
+	STEP1: 請使用p4 command抓code
+		  #p4 -c wenjing.tien_GoogleTV_12345 -p p4_svr2:1666 -P wFEkVzuM -u GoogleTV sync -f //GoogleTV/GTV/...
+	STEP2: Remove //GoogleTV/GTV/cts
+	STEP3: #source build/envsetup.sh
+	STEP4: #lunch 6
+	STEP5: #make –j16
+	STEP6: //GTV/out/target/product/mstaramber3/下生成出來的images(recovery.img/system.img/…) 都不能用, 請
+	   #//GTV/vendor/mstar/mstaramber3/mkimage.sh
+
+	如果遇到這種error, 請重新make
+	'out/target/common/obj/APPS/Ftp_intermediates//classes.dex' as 'classes.dex'...
+	touch: cannot touch `out/target/common/docs/api-stubs-timestamp': No such file or directory
+
+16 
+    换boot的启动显示图片和音乐，替换/tvcustomer/Customer/boot0.jpg和boot0.mp3,由于是链接文件链接到这两个文件，所以
+	替换后，可能需要在启动到boot时，把环境变量设置下，删除原来的文件，现在好像是不会自动load的
+	启动时，按住回车，进入烧写image时的状态
+	然后
+	set db_table 0
+	saveenv
+	重新启动试下
+	
+	需要重新换显示器，有的显示器HDMI输出延时比较长
+
+2012-7-26
+17
+	android编译后生成的ramdisk是一个gzip格式的文件
+	# file ramdisk.img
+	ramdisk.img: gzip compressed data, from Unix
+
+	那么先解压，因为后缀不是.gz，所以用-s 选项
+	gunzip -S .img ramdisk.img
+
+	这样生成了一个新文件ramdisk
+	查看是什么格式
+	# file ramdisk
+	ramdisk: ASCII cpio archive (SVR4 with no CRC)
+
+	ok，是一个cpio格式的文件
+	再次解压
+	先创建一个目录，假设叫rfs，并进入
+	# cpio -i -F ../ramdisk
+	512 blocks
+	ok，那么得到结果是
+	# ll
+	total 160
+	drwxrwx--x 2 root root   4096 2010-08-21 19:10 data
+	-rw-r--r-- 1 root root    118 2010-08-21 19:10 default.prop
+	drwxr-xr-x 2 root root   4096 2010-08-21 19:10 dev
+	-rwxr-x--- 1 root root 107412 2010-08-21 19:10 init
+	-rwxr-x--- 1 root root   1677 2010-08-21 19:10 init.goldfish.rc
+	-rwxr-x--- 1 root root  12995 2010-08-21 19:10 init.rc
+	drwxr-xr-x 2 root root   4096 2010-08-21 19:10 proc
+	drwxr-x--- 2 root root   4096 2010-08-21 19:10 sbin
+	drwxr-xr-x 2 root root   4096 2010-08-21 19:10 sys
+	drwxr-xr-x 2 root root   4096 2010-08-21 19:10 system
+18 
+	#set ethaddr  00:88:88:00:00:35 	//设置板子的MAC地址后，烧板速度快很多
+	#saveenv
+	在文件/scripts/set_config中修改，这样，每次mstar后都会保持这个mac
+	
+2012-7-27
+19 
+	在system 中建立一些文件，可以看升级是否成功
+20 recovery.img的制作
+	mkbootfs $PRODUCT_OUT/recovery/root | minigzip > $PRODUCT_OUT/ramdisk-recovery.img
+	mkimage -A arm -O linux -T multi -C none -a 0x40208000 -e 0x40208000 -n 'MStar-linux(recovery)' -d \
+	$PRODUCT_OUT/kernel:$PRODUCT_OUT/ramdisk-recovery.img $PRODUCT_OUT/recovery.img
+	
+2012-7-30
+21	==============monkey test======================
+	Set部分:
+	開啟adb功能
+	1.在tera term 下
+	2.輸入setprop service.adb.tcp.port 5555 
+	3.輸入stop adbd 
+	4.輸入start adbd 
+	5.輸入exit
+
+	PC部分:
+	與Set連結
+	1.Set 需接上網路線
+	2.進入命令提示字元(cmd)
+	3.輸入 adb connect XX.XX.XX.XX (XX:XX:XX:XX=>為測試所使用的IP)
+	4.輸入 adb devices 
+
+	之後在CMD輸入adb shell monkey -p com.android.browser -v -v 100000
+
+	---其中 -p 后面的是应用的包名，可以ps查看当前运行的所有包的名字，选择需要测试的，然后替换就可以了
+	
+22
+	shell@android:/ # netcfg
+	lo       UP                                   127.0.0.1/8   0x00000049 00:00:00:00:00:00
+	eth0     UP                               192.168.15.92/24  0x00001043 00:88:88:00:00:01
+	tunl0    DOWN                                   0.0.0.0/0   0x00000080 00:00:00:00:00:00
+	gre0     DOWN                                   0.0.0.0/0   0x00000080 00:00:00:00:00:00
+	sit0     DOWN                                   0.0.0.0/0   0x00000080 00:00:00:00:00:00
+23
+	6 说明书 	adb shell monkey -p com.jrm.android.wgt2apk.stbReadme -v -v 100000
+	7 设置
+	8 电视聚	adb shell monkey -p com.babao.tvju_box -v -v 100000
+	9 IPTV       adb shell monkey -p com.android.iptv.browser -v -v 100000
+	10 八宝饭    adb shell monkey -p com.jrm.babao.babaofan -v -v 100000
+	
+24  report to jacky zhu，报告mantis时，需要指派人
+25
+	卸载APK
+	第一步. 运行命令adb shell，进入模拟器的命令行模式下
+	第二步: 输入adb uninstall apk包名
+	第三步. 运行命令cd /data/app, 进行入模拟器存放APK文件的目录下
+	第四步. 运行命令rm xxx.apk(已经安装到模拟器中的程序文件), 删除刚才安装的应用程序APK文件
+26 setting.apk 安装
+	请按下面的步骤进行 设置 apk 替换
+	1 先手动删除/system/app目录下的setting
+	2 然后删除/data/data/目录下 setiing对应的包
+	3 重新启动
+	4 手动安装附件中的STB版本的setting，可以pm install 安装，也可以手动直接拷贝到/system/app目录下
+	tips:显示错误，也可能已经成功安装了
+	
+2012-7-31
+27  系统硬件认识
+	spi flash <------------> Mboot
+	nand flash <-----------> ROM ,主要分区：misc/recovery/boot/system/userdata/tvcustomer/tvservice/tvdatabase...
+							烧入对应的img，recovery.img，boot.img，system.img
+	RAM <--------------> 内存，系统启动时，读入boot分区中的boot.img，解压kernel和根文件系统root。
+							Mboot----->kernel-------->initramfs
+28　icon <--------common.h,icon为枚举类型，对应相应的数字
+	enum {
+	  BACKGROUND_ICON_NONE,
+	  BACKGROUND_ICON_INSTALLING,
+	  BACKGROUND_ICON_ERROR,
+	  BACKGROUND_ICON_CRASH_RECOVERY,
+	  NUM_BACKGROUND_ICONS
+	};
+
+29 makefile中常用函数
+	1 call    $(call variable,param,param,...)
+		call函数是唯一一个可以用来创建新的参数化的函数。你可以写一个非常复杂的表达式，这个表达式中，
+		你可以定义许多参数，然后你可以用call函数来向这个表达式传递参数。其语法是： 
+		$(call <expression>;,<parm1>;,<parm2>;,<parm3>;...) 
+		当make执行这个函数时，<expression>;参数中的变量，如$(1)，$(2)，$(3)等，会被参数<parm1>;，<parm2>;，<parm3>;
+		依次取代。而<expression>;的返回值就是call函数的返回值。例如： 
+		reverse =  $(1) $(2) 
+		foo = $(call reverse,a,b) 
+		那么，foo的值就是“a b”
+	
+	2 foreach   $(foreach var,list,text)
+		foreach函数和别的函数非常的不一样。因为这个函数是用来做循环用的，Makefile中的foreach函数几乎是仿照于Unix
+		标准Shell（/bin/sh）中的for语句，或是C-Shell（/bin/csh）中的foreach语句而构建的。它的语法是： 
+		$(foreach <var>;,<list>;,<text>;) 
+		这个函数的意思是，把参数<list>;中的单词逐一取出放到参数<var>;所指定的变量中，然后再执行<text>;所包含的表达式。
+		每一次<text>;会返回一个字符串，循环过程中，<text>;的所返回的每个字符串会以空格分隔，最后当整个循环结束时，
+		<text>;所返回的每个字符串所组成的整个字符串（以空格分隔）将会是foreach函数的返回值。 
+		所以，<var>;最好是一个变量名，<list>;可以是一个表达式，而<text>;中一般会使用<var>;
+		这个参数来依次枚举<list>;中的单词。举个例子： 
+		names := a b c d 
+		files := $(foreach n,$(names),$(n).o) 
+		上面的例子中，$(name)中的单词会被挨个取出，并存到变量“n”中，“$(n).o”每次根据“$(n)”计算出一个值，
+		这些值以空格分隔，最后作为foreach函数的返回，所以，$(files)的值是“a.o b.o c.o d.o”。 
+		注意，foreach中的<var>;参数是一个临时的局部变量，foreach函数执行完后，参数<var>;的变量将不在作用，
+		其作用域只在foreach函数当中。 
+	
+	3 wildcard   $(wildcard pattern)
+		它有一个参数，功能是展开成一列所有符合由其参数描述的文
+		件名，文件间以空格间隔。你可以像下面所示使用这个命令： 
+		SOURCES = $(wildcard *.c) 
+		这行会产生一个所有以 '.c' 结尾的文件的列表，然后存入变量 SOURCES 里。当然你不需要一定要把结果存入一个变量。
+		会立即展开变量，而SOURCES = *.c 不会立即展开
+	4 strip 去空格函数  $(strip string)
+		[例] $(strip a b c ) 
+		把字串“a b c ”去到开头和结尾的空格，结果是“a b c”。
+	5 patsubst--模式字符串替换函数
+		$(patsubst <pattern>;,<replacement>;,<text>;) 
+		[例] $(patsubst %.c,%.o,x.c.c bar.c) 
+		把字串“x.c.c bar.c”符合模式[%.c]的单词替换成[%.o]，返回结果是“x.c.o bar.o”。
+	6 filter 过滤掉text中不匹配pattern的串，返回匹配pattern的串
+		$(filter pattern1 pattern2 ...,text)
+		Returns all whitespace-separated words in text that do match any of the pattern
+		words, removing any words that do not match. The patterns are written using
+		‘%’, just like the patterns used in the patsubst function above.
+		The filter function can be used to separate out different types of strings (such
+		as file names) in a variable. For example:
+		sources := foo.c bar.c baz.s ugh.h
+		foo: $(sources)
+		cc $(filter %.c %.s,$(sources)) -o foo
+		says that ‘foo’ depends of ‘foo.c’, ‘bar.c’, ‘baz.s’ and ‘ugh.h’ but only
+		‘foo.c’, ‘bar.c’ and ‘baz.s’ should be specified in the command to the compiler.
+		过滤
+		foo.c bar.c baz.s ugh.h ----> foo.c bar.c baz.x 
+	7 addprefix/addsuffix
+		$(addprefix prefix,names...)
+		The argument names is regarded as a series of names, separated by whitespace;
+		prefix is used as a unit. The value of prefix is prepended to the front of each
+		individual name and the resulting larger names are concatenated with single
+		spaces between them. For example,
+		$(addprefix src/,foo bar)
+		produces the result ‘src/foo src/bar’.
+	8 $(subst from,to,text)
+		Performs a textual replacement on the text text: each occurrence of from is
+		replaced by to. The result is substituted for the function call. For example,
+			$(subst ee,EE,feet on the street)
+			substitutes the string ‘fEEt on the strEEt’.
+30
+	build/core/pathmap.mk 文件定义了一个列表pathmap_INCL，列表中每项是"短名:路径"对。宏函数include-path-for
+	将会使用这个列表，来通过短名获取相对于的路径，
+	如：$(call include-path-for,短名),如：recovery_initrc := $(call include-path-for, recovery)/etc/init.rc，
+	为文件：ics/bootable/recovery/etc/init.rc
+
+31   Makefile文件中recovery.img部分变量对应
+	recovery_initrc := $(call include-path-for, recovery)/etc/init.rc --->ics/bootable/recovery/etc/init.rc
+	recovery_kernel := $(INSTALLED_KERNEL_TARGET)# same as a non-recovery system  
+	recovery_ramdisk := $(PRODUCT_OUT)/ramdisk-recovery.img   -->ics/out/target/product/.../ramdisk-recovery.img
+	recovery_build_prop := $(INSTALLED_BUILD_PROP_TARGET)  
+	recovery_binary := $(call intermediates-dir-for,EXECUTABLES,recovery)/recovery   
+	recovery_resources_common := $(call include-path-for, recovery)/res    -->ics/bootable/recovery/res
+	recovery_resources_private := $(strip $(wildcard $(TARGET_DEVICE_DIR)/recovery/res)) 
+	recovery_resource_deps := $(shell find $(recovery_resources_common) \
+	  $(recovery_resources_private) -type f)
+	recovery_fstab := $(strip $(wildcard $(TARGET_DEVICE_DIR)/recovery.fstab)) --->ics/device/biaoqi/biaoqi6a801iptv/recovery.fstab
+	recovery_config := $(TARGET_DEVICE_DIR)/config  -->ics/device/biaoqi/biaoqi6a801iptv/config/
+	ir_kernel_module := $(TARGET_OUT)/lib/modules/mdrv-ir.ko   
+	ir_keymap_kernel_module := $(TARGET_OUT)/lib/modules/rc-*-tv.ko
+	echi_hcd_module := $(TARGET_OUT)/lib/modules/ehci-hcd.ko
+	usb_storage_module := $(TARGET_OUT)/lib/modules/usb-storage.ko
+	busybox_binary := $(call intermediates-dir-for,EXECUTABLES,busybox)/busybox  
+		-->ics/out/target/product/biaoqi6a801iptv/obj/EXECUTABLES/busybox_intermediates/busybox
+	TARGET_DEVICE_DIR  ---->对应device中相关目录  ics/device/biaoqi/biaoqi6a801iptv
+	
+31	
+	include $(BUILD_SYSTEM)/config.mk -----配置，系统常量的设定如
+	BUILD_PREBUILT:= $(BUILD_SYSTEM)/prebuilt.mk。。。
+	ics/build/core/envsetup.mk中定义系统变量:
+		TARGET_OUT_INTERMEDIATES := $(PRODUCT_OUT)/obj
+		TARGET_OUT_HEADERS:= $(TARGET_OUT_INTERMEDIATES)/include
+		TARGET_OUT_INTERMEDIATE_LIBRARIES := $(TARGET_OUT_INTERMEDIATES)/lib
+		TARGET_OUT_COMMON_INTERMEDIATES := $(TARGET_COMMON_OUT_ROOT)/obj
+
+		TARGET_OUT := $(PRODUCT_OUT)/system
+		TARGET_OUT_EXECUTABLES:= $(TARGET_OUT)/bin
+		TARGET_OUT_OPTIONAL_EXECUTABLES:= $(TARGET_OUT)/xbin
+		TARGET_OUT_SHARED_LIBRARIES:= $(TARGET_OUT)/lib
+		TARGET_OUT_JAVA_LIBRARIES:= $(TARGET_OUT)/framework
+		TARGET_OUT_APPS:= $(TARGET_OUT)/app
+		TARGET_OUT_KEYLAYOUT := $(TARGET_OUT)/usr/keylayout
+		TARGET_OUT_KEYCHARS := $(TARGET_OUT)/usr/keychars
+		TARGET_OUT_ETC := $(TARGET_OUT)/etc
+		TARGET_OUT_STATIC_LIBRARIES:= $(TARGET_OUT_INTERMEDIATES)/lib
+		TARGET_OUT_NOTICE_FILES:=$(TARGET_OUT_INTERMEDIATES)/NOTICE_FILES
+		TARGET_OUT_FAKE := $(PRODUCT_OUT)/fake_packages
+
+		TARGET_OUT_DATA := $(PRODUCT_OUT)/data
+		TARGET_OUT_DATA_EXECUTABLES:= $(TARGET_OUT_EXECUTABLES)
+		TARGET_OUT_DATA_SHARED_LIBRARIES:= $(TARGET_OUT_SHARED_LIBRARIES)
+		TARGET_OUT_DATA_JAVA_LIBRARIES:= $(TARGET_OUT_JAVA_LIBRARIES)
+		TARGET_OUT_DATA_APPS:= $(TARGET_OUT_DATA)/app
+		TARGET_OUT_DATA_KEYLAYOUT := $(TARGET_OUT_KEYLAYOUT)
+		TARGET_OUT_DATA_KEYCHARS := $(TARGET_OUT_KEYCHARS)
+		TARGET_OUT_DATA_ETC := $(TARGET_OUT_ETC)
+		TARGET_OUT_DATA_STATIC_LIBRARIES:= $(TARGET_OUT_STATIC_LIBRARIES)
+		TARGET_OUT_DATA_NATIVE_TESTS := $(TARGET_OUT_DATA)/nativetest
+
+		TARGET_OUT_UNSTRIPPED := $(PRODUCT_OUT)/symbols
+		TARGET_OUT_EXECUTABLES_UNSTRIPPED := $(TARGET_OUT_UNSTRIPPED)/system/bin
+		TARGET_OUT_SHARED_LIBRARIES_UNSTRIPPED := $(TARGET_OUT_UNSTRIPPED)/system/lib
+		TARGET_ROOT_OUT_UNSTRIPPED := $(TARGET_OUT_UNSTRIPPED)
+		TARGET_ROOT_OUT_SBIN_UNSTRIPPED := $(TARGET_OUT_UNSTRIPPED)/sbin
+		TARGET_ROOT_OUT_BIN_UNSTRIPPED := $(TARGET_OUT_UNSTRIPPED)/bin
+
+		TARGET_ROOT_OUT := $(PRODUCT_OUT)/root
+		TARGET_ROOT_OUT_BIN := $(TARGET_ROOT_OUT)/bin
+		TARGET_ROOT_OUT_SBIN := $(TARGET_ROOT_OUT)/sbin
+		TARGET_ROOT_OUT_ETC := $(TARGET_ROOT_OUT)/etc
+		TARGET_ROOT_OUT_USR := $(TARGET_ROOT_OUT)/usr
+
+		TARGET_RECOVERY_OUT := $(PRODUCT_OUT)/recovery
+		TARGET_RECOVERY_ROOT_OUT := $(TARGET_RECOVERY_OUT)/root
+	TARGET_PRODUCT为full_mstaredison，通过解析lunch选项得到。可以source后通过env命令查看
+32
+	googleTV  ics/bootable/recovery/res/images 中，少几幅图片
+		E:Missing bitmap icon_crash_recovery
+		(Code -1)
+		E:Missing bitmap button_reboot
+		(Code -1)
+		E:Missing bitmap button_reboot_selected
+		(Code -1)
+		E:Missing bitmap button_wipe
+		(Code -1)
+		E:Missing bitmap button_wipe_selected
+	如果ui.c中添加了tip提示，则需要再加入相应的图片
+
+2012-8-2
+33
+	请把附件中的文件覆盖到 ics\hardware\mstar\libfbdev\ 目录下，可以解决 720P 分辨率下截屏花屏的问题
+    下次版本发布时需要带这个问题的修正    -------done,按遥控器上的收藏键
+	昨天打包ics时，有个ko没有更新，请把附件中的ko 覆盖到现在你们昨天编译STB的ics的版本中
+    目录为：ics\device\mstar\mstaramber3\modules\
+    请手动更新进去，在系统版本更新之前，STB的版本都需要使用现在的ics版本来编译，请保留此ics环境，请知悉
+										  -------done
+34	P4脚本下载
+	切换内网，./fsync //DAILEO/temp_branch/TVOS_A3_STB/Supernova 622033---->changelist No
+	查看changelist no    :右键，Fold history
+	
+2012-8-3
+35
+	grep "blank" -r -n *  在当前目录中递归搜索字符串 ”blank"
+	find dir -name filename   在目录dir下查找文件filename，如果filename为正则表达式，则需要加双引号	  
+										  
+36
+	linux函数，成功返回0，失败返回非0值，如-1。。。。对应不同的失败情况
+	
+2012-8-6
+37
+	AEGIS_sznbselic_3305
+	MBoot: //DAILEO/MBoot/
+	Kernel: //THEALE/RedLion/2.6.35.11/
+	mstar: //THEALE/RedLion/mstar/
+	切换账号：
+		user: THEALE
+		pwd: rYtgNgYH
+	需要修改fsync文件，更改配置：p4_user=THEALE
+
+2012-8-8
+38  googletv recovery整合
+	GTV的boot和recovery分区都是10M，stb、公版里面boot为4M，recovery为6M
+	1改变set_partition脚本中分区的大小
+		# recovery partition(10MB)
+		mmc create recovery 0x00A00000
+	修改烧板的[[reocvery脚本，加入环境变量recoverycmd:
+		setenv recoverycmd mmc read.p 0x45000000 recovery 0xA00000\; bootm 0x45000000
+		saveenv
+	如果不指定recoverycmd环境变量，MBoot安装MBoot中默认的大小6M去读取recovery分区，造成分区读取不完全
+	2 修改recovery的init.rc脚本，加入相关语句：控制台console
+		service console /sbin/busybox sh
+		console
+		user root
+		group log
+	3 将busybox整合到recovery系统中：
+		路径：ics/prebuild/android-arm/busybox --------> recovery/root/sbin/busybox
+    4 GTV UI挂载GOP 问题解决
+s
+2012-8-9
+39	Mstar ISP Utility：
+		烧板版时，Mstar tool上选择 Erase Device 中的All chip，擦写整个芯片
+40 ./system/core/rootdir/ueventd.rc:/dev/graphics/*      
+     0660   root       graphics		
+41 scp boot.img rebekah@192.168.15.242:boot.img 
+		选yes，需要输入对方密码
+	郜丹密码：	rebekah142542
+		
+2012-8-13
+42  GTV中没有定义USE_FBDEV
+	ics中定义了USE_FBDEV
+	
+	ics通过supernova GOP进行输出，也没有通过google官方的framebuffer
+	GTV也要走supernova的GOP输出这条路，recovery模式下的supernova 还没有移植好
+	LOCAL_CFLAGS += -DMSOS_TYPE_LINUX -DUSE_FBDEV，表示编译时，系统定义变量MSOS_TYPE_LINUX和USE_FBDEV
+	
+	OCAL_CFLAGS := -DHHH 
+	这个等价于头文件中 
+	#define HHH	
+	
+43 GTV UI挂载GOP 问题解决
+	GTV/Bootable/recovery/minui/Android.mk
+	#selic
+	#ifneq ($(filter amber% eagle% agate%,$(TARGET_BOARD_PLATFORM)),)
+	ifneq ($(filter amber% eagle% agate% edison%,$(TARGET_BOARD_PLATFORM)),)
+	
+	
+	GTV/vendor/hisense/msd6359/BoardConfig.mk
+	TARGET_BOARD_PLATFORM := edison
+44
+	recovery系统中挂载system分区
+	busybox mount -t ext4 /dev/block/mmcblk4 /
+	
+45 device/biaoqi/common/app中加入APK N-ScreenGuide
+	a 将apk加入目录command/app 中
+	b 修改common/app下的Android.mk文件，加入:
+		include $(CLEAR_VARS)
+		LOCAL_MODULE := N-ScreenGuide
+		LOCAL_MODULE_TAGS := optional
+		LOCAL_MODULE_CLASS := APPS
+		LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
+		LOCAL_CERTIFICATE := PRESIGNED
+		LOCAL_SRC_FILES := $(LOCAL_MODULE).apk
+		include $(BUILD_PREBUILT)
+	  PRESIGNED表示不需要平台签名，直接采用apk自带的签名。第三方的APK大都采用这中签名。这样第三方APK升级时
+		不会出现错误。
+	  platform表示利用平台签名。
+	c 修改文件device/biaoqi/biaoqi6a801box/full_biaoqi6a801box.mk文件：
+		# STB app
+		PRODUCT_PACKAGES += \
+			STB_AirlineTickets \
+			STB_MyApps \
+			STB_BabaoPlayer \
+			STB_BabaoWeb \
+			BesTV_mstar \
+			STB_EStrongsFileExplorer \
+			STB_Launcher2 \
+			STB_WidgetHost \
+			STB_SystemUI \
+			STB_Settings \
+			WasuTV4ICS \
+			IPTV \
+			Babao_TV_FileFly \
+			TVJU \
+			STB_Browser \
+			splashtop \
+			MoveScreen \
+			IMusic \
+			STB_Readme \
+			ChinaTvPay \
+			N-ScreenGuide  ----->增加这一行
+	d biaoqi6a801box/device.mk文件加入：
+		 # PC N-Screen
+		 54 PRODUCT_PACKAGES += \
+		 55 libavcodec.so \
+		 56 libavutil.so \
+		 57 libcontrollerjni.so \
+		 58 libiris-jni.so \
+		 59 libjingle.so \
+		 60 libmmplayer-jni.so \
+		 61 libortp.so \
+		 62 libswscale.so
+	e 删掉obj对应生成的APK包后，再重新编译
+
+45 指定busybox的生成目录：
+	pribuild/android-arm/busybox/Android.mk:
+	LOCAL_MODULE_CLASS := EXECUTABLES   --->表示生成到obj/EXECUTABLES中
+	LOCAL_MODULE_PATH := $(TARGET_OUT_EXECUTABLES)   ---->生成到system/bin中
+46
+	init.rc文件343行，修改：
+	service console /system/bin/ash
+    console
+    disabled
+    user shell
+    group log
+	
+	为
+	service console /system/bin/busybox sh
+    console
+    disabled
+    user shell
+    group log
+2012-8-15
+47
+       附件中使用ota方式升级mboot的脚本，直接把mboot.bin放到update目录下，然后执行./update-package.sh即可	
+	   
+48  build/core/definitions.mk总定义函数：
+		eg:
+	a	###########################################################
+		## Retrieve a list of all makefiles immediately below some directory
+		###########################################################
+		define all-makefiles-under
+		$(wildcard $(1)/*/Android.mk)   ------>当前目录下所有的Android.mk文件，递归寻找
+		endef
+	b	
+		define all-subdir-makefiles
+		$(call all-makefiles-under,$(call my-dir))
+		endef
+		
+2012-8-16
+49
+	ics-611363/device/mstar/mstaramber3:
+	# PPPOE
+		PRODUCT_PACKAGES += \
+        pppoe-chmod \
+        pppoe-connect \
+        pppoe-init \
+        pppoe-setup \
+        pppoe-start \
+        pppoe-status \
+        pppoe-stop \
+        pppoe.conf \
+        busybox
+		
+2012-8-20
+50 HDMI GOP 输出
+	a.串口： #00112233 ；输入最后一个3时，无法输入。端口串口
+	b.Mstar-TVtool
+		1. chip-select : msd z*10 serise
+		2. I2C 
+			  Address  :378h
+		3. addr unit: 16bit
+			选择 1017-1028选项卡  GOP
+		Bank值自动变为0x101F。
+		修改78/0F ，值为202，回车。
+	c. file：load_file_scripts，之后Read Bank ，数字会发生变化
+	
+2012-8-22
+51 ISP 烧MBoot时 ,ISP软件 auto选项卡中不要选择ReConnect。这样
+52 编译supernova时，如果出现错误，改一下文件的权限：
+			chmod 777 -R Supernova
+			
+2012-8-28
+53 LOCAL_MODULE_TAGS:
+	 optional:如果想在所有的产品编译(eng user userbug test optional....)中包括该模块，需设置：
+			LOCAL_MODULE_TAGS := optional 
+		and add the LOCAL_MODULE value for that component into the PRODUCT_PACKAGES section of
+		product makefiles where it's necessary ,if appropriate
+	 eng -----> eng ,LOCAL_MODULE_TAGS为eng的模块，如果编译类型为eng，则加入该模块
+	 user ----->user
+	 userdebug 比user 多了root权限，user类型编译的产品没有root权限
+	 userdebug 比user 多了root权限，user类型编译的产品没有root权限
+	 test -----> test 
+	 
+	 $(TARGET_BUILD_VARIANT)即为系统编译的类型，lunch中选择的是eng/user/userdebug/....
+54 动态库so编译后在out目录中存在的路径：
+     a obj/SHARED_LIBRARIES/libjni_browserUtil_intermediates/LINKED/libjni_browserUtil.so  最初生成的库文件，包含冗余信息
+	 b obj/lib/libjni_browserUtil.so   target strip ，目标压缩，删除冗余的信息
+	 c symbols/system/lib    包含冗余的编译信息，方便调试 
+	 c system/lib/libjni_browserUtil.so   复制obj/lib/libjni_browserUtil.so
+	 
+2012-9-4
+55 chown system cache /cache
+	改变文件夹/cache的所有者。所有者为system，组名为cache。
+56 init.rc脚本位置：
+	normal系统：device/.../init.rc。在device.mk中：
+	PRODUCT_COPY_FILES := \
+	$(LOCAL_KERNEL):kernel \
+	device/biaoqi/biaoqi6a801box/init.rc:root/init.rc \
+	device/biaoqi/biaoqi6a801box/init.amber3.rc:root/init.amber3.rc \
+	device/biaoqi/biaoqi6a801box/init.amber3.usb.rc:root/init.amber3.usb.rc \
+	device/biaoqi/biaoqi6a801box/ueventd.amber3.rc:root/ueventd.amber3.rc \
+	用device自己的脚本，替代了system/core/rootdir下的脚本
+    recovery系统：bootable/recovery/etc/init.rc
+	GRV 的init.rc在vendor/mstar/mstaramber3/init.rc
+   init
+   	system/core/init
+2012-9-5	
+57
+  device/mstar/mstaramber3/BoardConfig.mk
+	#dev:      size             erasesize  name
+	#mmcblk1:  00080000(512KB)  00000000 "misc"
+	#mmcblk2:  00600000(6MB)    00000000 "recovery"
+	#mmcblk3:  00400000(4MB)    00000000 "boot"
+	#mmcblk4:  0E600000(230MB)  00000000 "system"
+	#mmcblk5:  34C00000(844MB)  00000000 "userdata"
+	#mmcblk6:  12C00000(300MB)  00000000 "cache"
+	#mmcblk7:  03C00000(60MB)   00000000 "tvservice"
+	#mmcblk8:  01000000(16MB)   00000000 "tvcustomer"
+	#mmcblk9:  00800000(8MB)    00000000 "tvdatabase"
+	#mmcblk10: 10000000(256MB)  00000000 "swap"
+	TARGET_USERIMAGES_USE_EXT4 := true
+	#TARGET_USERIMAGES_USE_UBIFS := true
+	BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00600000
+	BOARD_BOOTIMAGE_PARTITION_SIZE := 0x00400000
+	BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x0E600000
+	BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x34C00000
+	BOARD_FLASH_BLOCK_SIZE := 4096
+    
+  recovery.fstab中：
+	# mount point	  fstype  device  [device2]
+
+	/misc             emmc    /dev/block/mmcblk1
+	/recovery         emmc    /dev/block/mmcblk2
+    /boot             emmc    /dev/block/mmcblk3
+    /system           ext4    /dev/block/mmcblk4
+    /data             ext4    /dev/block/mmcblk5
+    /cache            ext4    /dev/block/mmcblk6
+    /tvservice        ext4    /dev/block/mmcblk7
+    /tvcustomer       ext4    /dev/block/mmcblk8
+    /tvdatabase       ext4    /dev/block/mmcblk9
+    /sdcard	          vfat    /dev/block/mmcblka /dev/block/mmcblka1
+    /mnt/sdcard       vfat    /dev/block/mmcblka /dev/block/mmcblka1
+    /mnt/usb/mmcblka1 vfat    /dev/block/mmcblka /dev/block/mmcblka1
+    /mnt/usb/sda1     vfat    /dev/block/sda /dev/block/sda1 /dev/block/sda2 /dev/block/sdb1    
+	
+  mstareaglenand: BoardConfig.mk:
+        #dev:   size             erasesize  name
+        #mtd0:  00100000(1MB)    00100000 "misc"
+        #mtd1:  00600000(6MB)    00100000 "recovery"
+        #mtd2:  00400000(4MB)    00100000 "boot"
+        #mtd3:  2EE00000         00100000 "ubi"
+        #mtd4:  01400000(20MB)   00100000 "CTRL"
+        #mtd5:  01400000(20MB)   00100000 "TBL"
+        #mtd6:  00100000(1MB)    00100000 "reserved"
+        #mtd7:  0B400000(180MB)  000fe000 "system"
+        #mtd8:  05400000(114MB)  000fe000 "userdata"
+        #mtd9:  08200000(130MB)  000fe000 "cache"
+        #mtd10: 02800000(40MB)   000fe000 "tvservice"
+        #mtd11: 02000000(32MB)   000fe000 "tvcustomer"
+        #mtd12: 02000000(32MB)   000fe000 "tvdatabase"
+  recovery.fstab:
+        /misc             mtd	  misc
+        /recovery         mtd     recovery
+        /boot             mtd     boot
+        /system	          ubifs   /dev/ubi0_0
+        /data             ubifs   /dev/ubi0_1
+        /cache            ubifs   /dev/ubi0_2
+        /tvservice        ubifs   /dev/ubi0_3
+        /tvcustomer       ubifs   /dev/ubi0_4
+        /tvdatabase       ubifs   /dev/ubi0_5
+		/sdcard	          vfat    /dev/block/mmcblka /dev/block/mmcblka1
+		/mnt/sdcard       vfat    /dev/block/mmcblka /dev/block/mmcblka1
+		/mnt/usb/mmcblka1 vfat    /dev/block/mmcblka /dev/block/mmcblka1
+		/mnt/usb/sda1     vfat    /dev/block/sda /dev/block/sda1 /dev/block/sda2 /dev/block/sdb1	
+2012-9-6
+58 制作cache.img
+    在out/.../mstareaglenand/下建立文件夹：cache
+    #cd device/mstar/mstareaglenand
+    #source mkimage.sh或者source mkimage_8k.sh
+    即在out/.../mstareaglenand 下生成cache.img
+59 
+	#logcat *:E 查看ERROR级别以上的log信息
+    130|shell@android:/system/etc # logcat *:6
+        --------- beginning of /dev/log/system
+        E/Vold    (  699): Error reading configuration (No such file or directory)... continuing anyways
+        E/WifiP2pService(  870): Failed to reload sta firmware java.lang.NullPointerException
+        E/ConnectivityService(  870): Error in radioAttributes - ignoring attempt to redefine type 1
+        E/MobileDataStateTracker(  870): default: Ignoring feature request because could not acquire PhoneService
+        E/MobileDataStateTracker(  870): default: Could not enable APN type "default"
+        E/EthernetStateTracker(  870): DhcpHandler: DHCP request failed: Timed out waiting for dhcpcd to start
+        E/EthernetStateTracker(  870): DhcpHandler: DHCP request failed: Timed out waiting for dhcpcd to start
+        E/ConnectivityService(  870): no dns provided for ETH - using 8.8.8.8
+    logcat 对应级别：
+       2 V：不过滤输出所有调试信息 包括 VERBOSE、DEBUG、INFO、WARN、ERROR 
+       3 D：debug过滤器，输出DEBUG、INFO、WARN、ERROR调试信息 
+       4 I：info过滤器，输出INFO、WARN、ERROR调试信息 
+       5 W：waring过滤器，输出WARN和ERROR调试信息 
+       6 E：error过滤器，只输出ERROR调试信息 
+       
+    在默认情况下，程序在被init执行时会将标准输出和标准错误都重定向到/dev/null(丢弃)。
+    若你想要获得调试信息，你可以通过Andoird系统中的logwrapper程序执行你的程序。
+    它会将标准输出/标准错误都重定向到Android日志系统(通过logcat访问)。
+     
+	    系统中的程序中输出log一般是到/dev/log/下的三个设备中，可以用logcat查看。
+		对于init运行的程序则有两种方法查看到log信息：
+		1.添加/system/bin/logwrapper,可以用logcat查看，例如
+			 service /system/bin/logwrapper /system/bin/rild
+		2.添加console,像sh一样直接输出到console
+			 service console /system/bin/sh
+  		     console
+       参考网页：http://blog.csdn.net/jiang_dlut/article/details/6117037
+59 在正常系统的system/core/rootdir/init.rc脚本中有service：
+		service flash_recovery /system/etc/install-recovery.sh
+    	class main
+    	oneshot
+     install-recovery.sh脚本内容：
+     	#!/system/bin/sh
+        if [ -f /system/recovery.img ]; then
+          log -t recovery "Installing new recovery image"
+          dd if=/system/recovery.img of=/dev/block/mmcblk2
+          log -t recovery "Delete recovery.img"
+          mount -o remount rw /system
+          rm /system/recovery.img
+          mount -o remount ro /system
+        else
+          log -t recovery "Recovery image not exist"
+        fi
+     表示每次系统启动都会执行脚本install-recovery.sh，该脚本是升级时从recovery系统拷入的：
+     	package_extract_dir("recovery", "/system");
+     由于init进程的关系，正常系统执行脚本install-recovery.sh没有log输出.可以手动执行脚本，在logcat中查看log信息
+	
+2012-9-10
+60 flash:NAND flash/NOR flash
+    NAND flash:以block/page为单位进行读写
+	NOR flash：以字节为单位进行读写操作
+	NAND flash 比NOR flash拥有更高的存储密度，容量大但不能像NOR flash 以字节为单位进行访问
+	NAND flash:SLC /MLC
+	SLC:each cell stores only one bit of information
+	MLC: can store more than one bit per cell multi-level cell
+	EMMC:是一种统一标准接口，相当于：主控control+NAND flash
+	
+2012-9-10
+61
+   makefile 中，
+		-include FILENAMES...
+   使用这种方式时,当所要包含的文件不存在时不会有错误提示、make 也不会退出
+62
+	mmm -B bootable/recovery  android 编译的mmm命令,强制重新编译。可以不加-B，这样就不用强制编译了
+	mm
+63 
+	Failed to execute /init
+	1>   linuxrc不具备可执行属性 
+	2>   linuxrc的解释shell不在首行 
+	3>   linuxrc的解释shell不存在 
+	一般都出不了上面三个原因.
+64 回调函数用法callback
+65
+	LOCAL_FORCE_STATIC_EXECUTABLE：如果编译时候需要链接的动态库库存在静态库形式，
+	那么在这个编译变量等于true的情况下，将会链接到对应的静态库而不是动态库。
+	比如上面列出的libm，libz，libc，libcutils，libutils，liblog等动静态库都存在，
+	那么在该变量被置true的时候，将会链接对应的静态库。当然对于本来就是静态库的libHWrecog.a来说，
+	该变量值不会影响它是被静态链接的。所以可以想到这个参数的设置是和前面用gcc编译时候指定-static参数一样的效果,
+	 推荐只是编译特殊ELF文件才用。
+66
+LOCAL_SYSTEM_SHARED_LIBRARIES#
+	 Used while building the base libraries: libc, libm, libdl. Usually it should be set to "none," 
+	 as it is in $(CLEAR_VARS). When building these libraries, it's set to the ones they link against.
+	 For example, libc, libstdc++ and libdl don't link against anything, and libm links against libc.
+	 Normally, when the value is none, these libraries are automatically linked in to executables and 
+	 libraries, so you don't need to specify them manually.
+67
+# ir driver
+	挂载驱动
+	mstaramber3/init.amber3.rc
+    insmod /system/lib/modules/rc-keymap-tv.ko
+    insmod /system/lib/modules/mdrv-software-ir.ko
+    insmod /system/lib/modules/mdrv-ir.ko
+68
+	sleep 中睡眠时间移秒计算
+	sleep(1)  睡眠1s
+69
+	recovery/res/images中的图像是24位的，icon_crash_recovery和tip_crash_recovery图像的位数不是24，
+	造成图像在recovery模式下无法显示。下次如果出现无法显示的问题，可以对比试试
+70
+	assert() 宏用法
+　　注意：assert是宏，而不是函数。在C的assert.h 头文件中。
+　　assert宏的原型定义在<assert.h>中，其作用是如果它的条件返回错误，则终止程序执行，原型定义：
+　　#include <assert.h>
+　　void assert( int expression );
+　　assert的作用是先计算表达式 expression ，如果其值为假（即为0），那么它先向stderr打印一条出错信息
+71 java –jar out/host/linux-x86/framework/signapk.jar -w build/target/product/security/testkey.x509.pem 
+   build/target/product/security/testkey.pk8 update.zip update_signed.zip
+   这里的签名工具和安全证书是以Android自带的为例，用户可以修改指令指定自己的证书。
+   文件位置：可以在/build/target/product/security/中找到platform.pk8,platform.x509.pem等签名文件，
+   对应不同的权限。signapk.jar：由/platform/build/tools/signapk/编译产出,可以在   
+   /out/host/linux-x86/framework/中找到。
+   
+72 python 中的pass语句
+	关于pass，我的理解就是空语句，是为了保持程序结构的完整性。
+	以if语句为例，
+	在c或c++/java中：
+	if(true)
+	;//do nothing
+	else
+	{
+	//do something
+	}
+	对应于python就要这样写：
+	if true:
+	pass #do nothing
+	else:
+	#do something
+
+	所以，python中的pass语句就是c或java中的空语句
+73 python是动态性的语言，可以在后面增加成员变量：
+	class Options(object): pass
+	OPTIONS = Options()
+	OPTIONS.search_path = "out/host/linux-x86"
+	OPTIONS.verbose = False
+	OPTIONS.tempfiles = []
+	OPTIONS.device_specific = None
+	OPTIONS.extras = {}
+	OPTIONS.info_dict = None
+74 % : 字符串格式操作符
+   例子： 
+   >>> print '%s is number %d!' % ('Python', 1)  
+    Python is number 1!  
+75 python中file文件对象。open()函数返回一个file的对象
+	 fileobj=open("fsync")
+	 print fileobj.read()
+	 输出文件fsync的内容
+76 
+	$@  表示目标文件
+	$^  表示所有的依赖文件
+	$<  表示第一个依赖文件
+77  recovery 对script脚本的解析：
+		bootable/recovery/update/和bootable/recovery/edify目录中
+	lex和yacc负责解析脚本:
+		Value* MbootUpdateFn(const char* name, State* state, int argc, Expr* argv[]) {
+		//获得参数，script中对应的命令为：mboot_update("/tmp/mboot.bin")，所以这里
+		//这里args[0]="/tmp/mboot.bin"，argc=1;
+		char** args = ReadVarArgs(state, argc, argv);
+		if (args == NULL) {
+			return NULL;
+		}
+		//将参数args组合后输入到管道中
+		int size = 0;
+		int i;
+		for (i = 0; i < argc; ++i) {
+			size += strlen(args[i]);
+		}
+
+		char* buffer = malloc(size+1);
+		size = 0;
+		for (i = 0; i < argc; ++i) {
+			strcpy(buffer+size, args[i]);
+			size += strlen(args[i]);
+			free(args[i]);
+		}
+		free(args);
+		buffer[size] = '\0';
+
+		char* line = strtok(buffer, "\n");
+		if (NULL == line) {
+			fprintf(((UpdaterInfo*)(state->cookie))->cmd_pipe, "mboot_update %s\n", line);
+		} else {
+			while (line) {
+				fprintf(((UpdaterInfo*)(state->cookie))->cmd_pipe,"mboot_update %s\n", line);
+				line = strtok(NULL, "\n");
+			}
+		}
+
+		return StringValue(buffer);
+	}
+	Value* Sha256VerifyFn(const char* name, State* state, int argc, Expr* argv[]) {
+    if (argc != 2) {
+        return ErrorAbort(state, "%s() expects 2 args, got %d", name, argc);
+    }
+    char** args = ReadVarArgs(state, argc, argv);
+    if (args == NULL) {
+        return NULL;
+    }
+    int i;
+    for(i=0;i<argc;i++)
+        LOGI("args[%d]:%s\n",i,args[i]);
+    char* imgname = args[0];
+    char* sha256num = args[1];
+    fprintf(((UpdaterInfo*)(state->cookie))->cmd_pipe, "sha256_sign %s %s\n", imgname, sha256num);
+    free(args);
+    return StringValue(strdup("Sha256Verify"));
+	//这里返回StringValue(strdup("Sha256Verify")),而不能直接返回StringValue("Sha256Verify")
+	//因为在/updater/Updater.c中会free掉StringValue产生的参数，"Sha256Verify"是一个常字符串，
+	//free的时候回出错，导致子进程updatar出现错误
+78 gcc :-Wall   产生尽可能多的警告信息,建议始终带上
+   gcc 参数 -c 表示编译文件，生成目标文件，但没有经过链接处理，不能运行。-c参数只编译，不链接
+			gcc -c test.c -o test.o 
+		还要gcc -o test test.o  ，链接目标文件，才能变为可执行文件。
