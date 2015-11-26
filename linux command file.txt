@@ -1,0 +1,5 @@
+which mysql
+==> get mysql path
+
+PATH=/usr/locate/mysql/bin:%PATH
+==> add mysql to PATH
