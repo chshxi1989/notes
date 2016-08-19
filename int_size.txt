@@ -1,0 +1,35 @@
+32 bit platform:
+char          1Byte
+short int     2Byte
+int           4Byte
+unsigned int  4Byte
+long          4Byte
+long long     8Byte
+float         4Byte
+double        8Byte
+uint64_t      8Byte
+uint32_t      4Byte
+char*         4Byte
+
+64 bit platform:
+char          1Byte
+short         2Byte
+int           4Byte
+long          8Byte
+long long     8Byte
+float         8Byte
+double        8Byte
+uint64_t      8Byte
+uint32_t      4Byte
+char*         8Byte
+
+
+little endian and big endian:
+data 0x12345678 layout
+in little endian platform(arm): 
+Dram Addr : 0x55 0x56 0x57 0x58
+Dram data : 0x78 0x56 0x34 0x12
+
+in big endian(mips):
+Dram Addr : 0x55 0x56 0x57 0x58
+Dram data : 0x12 0x34 0x56 0x78
